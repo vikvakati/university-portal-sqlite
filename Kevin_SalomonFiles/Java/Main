@@ -1,0 +1,42 @@
+class User{
+    private int Id;
+    private String fname,lname;
+    public void setId(int i){Id = i;}
+    public void setFirstName(String f){fname = f;}
+    public void setLastName(String l){lname = l;}
+    public int getId(){return Id;}
+    public String getFirstName(){return fname;}
+    public String getLastName(){return lname;}
+}
+
+//dervied class
+class student extends User{
+    private int Id;
+    private String fname,lname;
+    public void studentPrintFunc(){
+        System.out.println("Student function is being called");
+    
+    }
+}
+class admin extends User{
+     private int Id;
+    private String fname,lname;
+    public void adminPrintFunc(){
+        System.out.println("Admin function is being called"); 
+    
+    }
+}
+class instructor extends User{
+    private int Id;
+    private String fname,lname;
+    public void instructorPrintFunc(){
+        System.out.println("Instructor function is being called");
+    
+    }
+}
+class Main{
+    public static void main(String[] args){
+        instructor J = new instructor();
+        J.instructorPrintFunc();
+    }
+}
