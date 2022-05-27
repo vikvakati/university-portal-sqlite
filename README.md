@@ -1,2 +1,2 @@
 # ApplicationProgramming-Database
-Database application for the Application programming class
+LeopardWeb Database application for the Application programming class
