@@ -30,3 +30,9 @@
       	Testing(1 week)
         •	Test the database by using the admin functions to enter courses, students, instructors. 
         •	After implementing students and instructors, we ill test the functions that are in these derived classes and see if they work. If they work then our system is complete.
+     o	Build 5
+      	Design and Development (3 weeks)
+        •	Build a User interface that the admin, instructor or user can use on their computer like leopardweb
+      	Testing(1 week)
+        •	Test the database by using the admin functions to be able to add a class and students to a course that can be seen on the user interface
+        • Repeat the above process for the instructor and the student
