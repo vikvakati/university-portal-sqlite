@@ -3,20 +3,20 @@
     	Building a scheduling system that is like Leopard Web
     	Should work for 100 students, 10 instructors and 1 admin 
     	System should include multiple semesters, print out of schedule, scheduling preferences
-  o	System Design 
+  o	System Design (7 weeks)
     	The system will be written in python.
     	It will use classes and inheritance to build the system.
     	There is 1 base class to describe all the members of this database. They will all have a first name, last name, and ID. 
     	There will be three derived classes that will be for the students, instructors, and the admin.
-  o	Implementation and unit testing
+  o	Implementation and unit testing (3 weeks)
     	Test by adding 1 student, 1 teacher and an admin separately 
     	Test the capabilities of each type of user individually 
     	Check if the student can add classes, see available courses and their own schedule 
     	Check to see if the instructors can see available courses and their own course roster 
     	Check to see if the admin can see everything
-  o	Integration and unit testing
+  o	Integration and unit testing (2 weeks)
     	Integrate the student, teacher, and admin all at once
     	Put 5 students, 2 teachers and 1 admin
-  	Input a couple of courses for these students to be in, and test the functionality of the classes
-  o	Operation and maintenance
-  	Install the system with 100 students, 10 instructors and 1 admin
+    	Input a couple of courses for these students to be in, and test the functionality of the classes
+  o	Operation and maintenance( 2 weeks)
+    	Install the system with 100 students, 10 instructors and 1 admin
