@@ -1,0 +1,4 @@
+Building a scheduling system that is built like leopard web. It needs to work for 100 students, 10 instructors and 1 admin. System should include multiple semesters, print out scheduling and scheduling preferences
+For the integration and configure method, we would start out by building our classes and functions that would need to be used for the database.
+Could use this SQL database that is used for an employee database. We could modify and change it to use it for the use of an employee database. We would keep the bones of the SQL database and would allow us to save time.  https://www.sqltutorial.org/wp-content/uploads/2020/04/mysql.txt
+This data interface could be used for us to use in the project. We would just need to alter it for our project. We would add the leopard web and Wentworth logos.  https://github.com/milworm/Mysql-User-Interface
