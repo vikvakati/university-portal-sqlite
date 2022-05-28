@@ -4,29 +4,29 @@
     	Should work for 100 students, 10 instructors and 1 admin 
     	System should include multiple semesters, print out of schedule, scheduling preferences
   o	Build 1
-    	Design and Development
+    	Design and Development(2 weeks)
       •	Build the student part of the database
       •	Build the derived class with the functions that allow the user to add/drop courses, search for courses and view their schedule
-    	Testing
+    	Testing(1 week)
       •	Test to see if the functions work, and if the student can see potential courses, search for courses, and view their schedule. If this works, then we can the next part of the build.
       •	User inputs variables into the functions and see if they return what the user would want
    o Build 2 
-      	Design and Development
+      	Design and Development(2 weeks)
       •	Build the instructor part of the database 
       •	Build the derived classes with the functions that allow the user to print their schedules, print their class list and search for courses
-      	Testing 
+      	Testing (1 week)
         •	Test to see if the works, and if the instructor can print their schedule, print their class list and search for courses
         •	Input variables into these functions to see if they return what we are expecting.
     o	Build 3 
-      	Design and Development
+      	Design and Development(2 weeks)
         •	Build the user part of the database 
         •	Build the derived classes with the functions that allow the user to add courses, remove courses, add remove users, add/remove student from the course and be able to print rosters.
-      	Testing
+      	Testing (1 weeks)
         •	Test to see if the functions work
         •	Input variables into the functions and see if they return what we are expecting.
     o	Build 4
-      	Design and Development
+      	Design and Development (3 weeks)
         •	Build a database using SQL and implementing the previous software written
-      	Testing 
+      	Testing(1 week)
         •	Test the database by using the admin functions to enter courses, students, instructors. 
         •	After implementing students and instructors, we ill test the functions that are in these derived classes and see if they work. If they work then our system is complete.
