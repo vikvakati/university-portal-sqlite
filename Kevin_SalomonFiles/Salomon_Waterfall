@@ -20,3 +20,7 @@
     	Input a couple of courses for these students to be in, and test the functionality of the classes
   o	Operation and maintenance( 2 weeks)
     	Install the system with 100 students, 10 instructors and 1 admin
+
+Vik's Comments:
+System design doesn't describe anyting about building a database of users.
+We might need to allocate a little more time for the database. Not sure what operation and maintanance will entail so we could use most of those 2 weeks.
