@@ -1,0 +1,22 @@
+Outline Description: 
+	We want a system that has the same requirements as found in the waterfall method. 
+Phase 1:
+1.	Build a basic function that will verify classes are working properly
+2.	Build database that will contain all users
+Phase 2:
+1.	Build User class with functions that are used across all 3 user types
+2.	Build Student class using inheritance, add extra functions (add/drop course)
+3.	Add student to database for function testing
+4.	Test the functionality of users, ensure that entering random strings doesn’t break code, etc
+Phase 3:
+1.	Build Instructor class using inheritance, add extra functions
+2.	Add instructor to database for testing purposes
+3.	Test the functionality
+Phase 4:
+1.	Build admin class using inheritance, add extra functions
+2.	Add admin to database for testing purposes
+3.	Testing functionality
+Phase 5:
+1.	Build GUI to make it more presentable and easier to follow
+2.	Test any sort of bugs for the GUI
+3.	Re-test all of the databases/users to ensure that they still work properly with the new information
