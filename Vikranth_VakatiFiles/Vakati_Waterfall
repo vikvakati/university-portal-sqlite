@@ -33,7 +33,10 @@ Implementation and unit testing (Proposed timeline: 2 weeks)
 
 Integration and system testing (Proposed timeline: 2 weeks)
   Combine functionality of all users into a UI
+  
+ 
   Test each subclass individually (Repeat testing)
     First test with a single user, then expand the database
     Test every function
     Test privileges/access of each subclass
+Comments: This looks good, but looks like it will take a long time, and if there is a delay in any of steps. It would take to long, and we wouldnt be able to finish the project in time. 
