@@ -28,3 +28,6 @@ Operation and Maintenance:
 Vik's Comments:
 username/password login screen is a good idea to maintain user privileges. 
 The testing phase should be mostly separate from the deesign phase but I agree that we will do some testing while designing.
+Kevins Comments:
+In waterfall, there shouldnt be an overalp since you are suppossed to finish a step, and then go onto another. So I would change the
+wording of the Implementation and Unit testing/ Integration and System Testing.
