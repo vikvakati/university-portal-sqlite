@@ -20,3 +20,6 @@ Phase 5:
 1.	Build GUI to make it more presentable and easier to follow
 2.	Test any sort of bugs for the GUI
 3.	Re-test all of the databases/users to ensure that they still work properly with the new information
+
+Vik's Comments:
+might be easier to build and test with a database of 1 of each user first, then expand at the end
