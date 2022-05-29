@@ -36,3 +36,6 @@
       	Testing(1 week)
         •	Test the database by using the admin functions to be able to add a class and students to a course that can be seen on the user interface
         • Repeat the above process for the instructor and the student
+        
+Vik's Comments:
+Each increment and the timeline looks good, but we might have to build the database earlier to use for testing the users.

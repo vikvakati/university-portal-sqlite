@@ -2,3 +2,7 @@ Building a scheduling system that is built like leopard web. It needs to work fo
 For the integration and configure method, we would start out by building our classes and functions that would need to be used for the database.
 Could use this SQL database that is used for an employee database. We could modify and change it to use it for the use of an employee database. We would keep the bones of the SQL database and would allow us to save time.  https://www.sqltutorial.org/wp-content/uploads/2020/04/mysql.txt
 This data interface could be used for us to use in the project. We would just need to alter it for our project. We would add the leopard web and Wentworth logos.  https://github.com/milworm/Mysql-User-Interface
+
+Vik's Comments:
+SQL database has a lot of attributes, so it would be easy to alter for our needs.
+Not quite sure how the Mysql interface works, but it seems like it is to create a GUI so that will be useful towards the end of the project.
