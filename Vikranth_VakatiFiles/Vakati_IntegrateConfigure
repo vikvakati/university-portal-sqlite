@@ -1,8 +1,12 @@
+The purpose of this project we will be creating a student databse comparable to leopardweb. This database 
+should consist of students, teachers and admin. The students should be able to view their schedule and sign up for class.
+Insstructors should be able to see the students in their class and schedule. The admin should have the ability to control 
+the database.
 http://learning.eng.cam.ac.uk/pub/Public/Turner/Teaching/student-teacher-demo.pdf
     This powerpoint is a demo of how to setup an sqlite database for students and lecturers
     Can be used as a starting point to create the database, and we can add or remove attributes as necessary
     sqlite database can be integrated with the system using the python sqlite3 module
-
+    
 https://www.geeksforgeeks.org/student-management-system-in-python/
     This tutorial shows how to make a student management system in python
         add/remove students
@@ -10,3 +14,4 @@ https://www.geeksforgeeks.org/student-management-system-in-python/
         Search for student
         Update roll numbers
     This can be used to create a basic management system for a single class of user, and then expand for other subclasses of users
+    
