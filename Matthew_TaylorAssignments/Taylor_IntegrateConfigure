@@ -1,3 +1,6 @@
 This model will follow the same requirements as the previous two. If we want to integrate some sort of outside code to use in order to save us time it would make sense to analyze exactly what would be the hardest task in this project. Considering that our first assignment was creating the user classes, it’s not very difficult getting that to work. 
 It’s the same thing with the main code that generates a GUI. So, that leaves us with creating the database. I happened to find a good source someone had already done creating a student database using SQL (freeCodeCamp/learn-sql-by-building-a-student-database-part-1 (github.com)). This code can be easily manipulated to fit our own needs and saves a significant amount of time. 
 So, once the classes have been created this code can be implanted into the program. From there it would just be some bug testing to ensure that everything is working.
+
+Vik's Comments:
+This looks like a good SQL example to use. It doesnt provide a tutorial with it, so we would have to use another one but that can't be hard to find.
