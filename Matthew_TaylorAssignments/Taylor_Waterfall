@@ -1,0 +1,25 @@
+Requirements: 
+•	Database w/ capability to support 100 students, 10 instructors & 1 admin
+o	Student – can register, see available courses & their own schedule
+o	Instructor – can see available courses & their course roster
+o	Admin – can see everything & edit courses/users/schedules
+•	Database of courses
+•	Multiple semesters capability
+•	Print-out of schedule
+•	Scheduling Preferences
+•	MINIMAL BUGS (must be tested thoroughly)
+
+System and Software Design:
+	Creating a somewhat basic GUI would provide the end user of this program a clean interface for them to perform whatever tasks they need to be done. To ensure that this is working properly, one of the first things that needs to be set up is the database containing all the various users. From there you can code in a login screen where they must provide a username and password, that way different students aren’t allowed to register another student for a random class. Depending on what their login credentials are (student/instructor/admin) will determine what the next page will show. If a student/instructor logs in, they will be immediately prompted to enter a semester (Fall/Spring/Summer) and year for them to edit. 
+For students, after selecting a semester, they will be given 4 choices; Register for course, See available courses, View schedule and Print schedule. Selecting “Register for course” will prompt them to enter a CRN, determine whether they can join it or not and then ask if they would like to enter another one. Selecting “See available courses” will list all available courses, their CRN and how many spots are left in the class. “View schedule” will print out the students schedule to the GUI while “Print schedule” will export the users schedule to an external file for printing. 
+For instructors they will be able to see available courses just like the student’s class can, an option for “View course roster” and “View course schedule”. When they select their course roster it will display what class(es) they are teaching, the name of the student and their username. After displaying this list it will prompt “Would you like to print this schedule?” and if so it will output to a separate text file. Just like the student class the instructor will also be able to view/print their course schedule in the same way. 
+For the admin they will be given the same prompt after logging in just like the other classes. The difference is the addition of new options; Add/remove course from database, add/remove user from database, add/remove user from course and search/print rosters/courses. For adding/removing items from a database, there will be 2 options that are almost identical. One for courses and one for users. It will prompt the user for the course/user they want to add/remove and then do so. It will be similar for adding/removing a user from a course except you first choose a user, and then from there it will list the courses they are a part of. Then you can choose which course you would like to add/remove. For printing rosters/courses, they will both be under the “Print” option. Then the admin can type in which course they want to look at and then choose whether to print that roster. If you just want the courses, the admin will type in “courses” to print all the courses and their CRN.
+
+Implementation and Unit Testing:
+	This step will overlap with the previous step since there will be bug testing while implementing the code described. It’ll follow the basic steps of typing a section of code, running it to see if there’s any bugs, solving any bugs if there are and then repeating or just repeating if there are no bugs.
+  
+Integration and System Testing:
+	This step is a bit related to the previous one, except now the code should be fully fleshed out. We would want to fill the database with a few users in each type along with inputting some courses into the database. From there you can test out the system itself to see if it works properly and then return to the previous step if there are any bugs.
+  
+Operation and Maintenance:
+	By now the system testing should be done and bug free. Now we can fill the databases with all of the users that are required to and continue to provide support if any other bugs appear. 
