@@ -6,15 +6,18 @@ Incremental Model:
     search courses
     add/drop courses
     print their schedule
+    (Test) Test to see if the subclass functions operate and if it can use the base class functions 
 4) Create and test instructor subclass (Proposed timeline: 3 weeks)
     print their schedule
     print their class list
     and search for courses
+    (Test) Test to see if the subclass functions operate and if it can use the base class functions
 5) Create and test admin subclass (Proposed timeline: 3 weeks)
     add courses to the system
     remove courses from the system
     add/remove users
     add/remove student from a course
     search and print rosters and courses
+    (Test) Test to see if the subclass functions oeprate and if it can use the base class functions
 6) Create UI to combine functionality of all users (Proposed timeline: 3 weeks)
 7) Expand database (Proposed timeline: 1 week)
