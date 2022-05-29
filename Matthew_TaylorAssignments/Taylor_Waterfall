@@ -23,3 +23,8 @@ Integration and System Testing:
   
 Operation and Maintenance:
 	By now the system testing should be done and bug free. Now we can fill the databases with all of the users that are required to and continue to provide support if any other bugs appear. 
+
+
+Vik's Comments:
+username/password login screen is a good idea to maintain user privileges. 
+The testing phase should be mostly separate from the deesign phase but I agree that we will do some testing while designing.
