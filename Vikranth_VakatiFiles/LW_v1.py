@@ -80,6 +80,16 @@ class student(user):
         for i in course_result:
             print(i)
 
+    def searchCourseInput():
+        print("Enter Search Parameter: ")
+        x = input()
+        cursor.execute("""SELECT * 
+        FROM COURSE 
+        WHERE CRN='%s' OR TITLE='%s' OR DEPARTMENT='%s' OR INSTRUCTOR_FIRST='%s' OR INSTRUCTOR_LAST='%s' OR TIME='%s' OR DAYS='%s' OR SEMESTER='%s' OR YEAR='%s' OR CREDITS='%s' """% (x, x, x, x, x, x, x, x, x, x))
+        courseInput_result = cursor.fetchall()
+        for i in courseInput_result:
+             print(i)
+             
 class instructor(user):
     def __init__(self, FirstName, LastName, ID):
         super(instructor, self).__init__(FirstName, LastName, ID)
@@ -104,6 +114,16 @@ class instructor(user):
         course_result = cursor.fetchall()
         for i in course_result:
             print(i)
+
+    def searchCourseInput():
+        print("Enter Search Parameter: ")
+        x = input()
+        cursor.execute("""SELECT * 
+        FROM COURSE 
+        WHERE CRN='%s' OR TITLE='%s' OR DEPARTMENT='%s' OR INSTRUCTOR_FIRST='%s' OR INSTRUCTOR_LAST='%s' OR TIME='%s' OR DAYS='%s' OR SEMESTER='%s' OR YEAR='%s' OR CREDITS='%s' """% (x, x, x, x, x, x, x, x, x, x))
+        courseInput_result = cursor.fetchall()
+        for i in courseInput_result:
+             print(i)
 
 class admin(user):
     def __init__(self, FirstName, LastName, ID):
@@ -148,6 +168,15 @@ class admin(user):
         for i in course_result:
             print(i)
 
+    def searchCourseInput():
+        print("Enter Search Parameter: ")
+        x = input()
+        cursor.execute("""SELECT * 
+        FROM COURSE 
+        WHERE CRN='%s' OR TITLE='%s' OR DEPARTMENT='%s' OR INSTRUCTOR_FIRST='%s' OR INSTRUCTOR_LAST='%s' OR TIME='%s' OR DAYS='%s' OR SEMESTER='%s' OR YEAR='%s' OR CREDITS='%s' """% (x, x, x, x, x, x, x, x, x, x))
+        courseInput_result = cursor.fetchall()
+        for i in courseInput_result:
+             print(i)
 
 #https://stackoverflow.com/questions/19964603/creating-a-menu-in-python
 ans=True
@@ -158,7 +187,9 @@ while ans:
 		3. Print Course Roster (instructor)
 		4. Add Course to System (admin)
 		5. Remove Course from System (admin)
-		6. Exit/Quit
+        6. Search all courses (all users)
+        7. Search courses based on parameters (all users)
+		8. Exit/Quit
 	""")
 	
     ans = input("Select An Action: \n")
@@ -182,6 +213,9 @@ while ans:
         student.searchCourse()
 
     elif ans=="7":
+        admin.searchCourseInput()
+
+    elif ans=="8":
         print("\n Goodbye") 
         ans = None
     
