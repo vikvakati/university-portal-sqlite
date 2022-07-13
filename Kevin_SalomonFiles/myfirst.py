@@ -78,17 +78,6 @@ cursor = conn.cursor()
 #sql_command = """INSERT OR IGNORE INTO COURSE VALUES('1000', 'APPLIED PROGRAMMING CONCEPTS', 'ELEC', 'Joseph', 'Forier', '8:00-9:50', 'MWF', 'SUMMER', 2022, 4);"""
 #cursor.execute(sql_command) 
 
-sql_command = """INSERT OR IGNORE INTO COURSE VALUES('1001', 'SENIOR DESIGN', 'ELEC', 'Patrick', 'Nelson', '10:00-12:50', 'TR', 'SUMMER', 2022, 4);"""
-cursor.execute(sql_command) 
-sql_command = """INSERT OR IGNORE INTO COURSE VALUES('1002', 'Chemistry', 'SCIN', 'Galilei', 'Galileo', '8:00-9:20', 'TR', 'SUMMER', 2022, 4);"""
-cursor.execute(sql_command) 
-sql_command = """INSERT OR IGNORE INTO COURSE VALUES('1003', 'Computer Networks', 'ELEC', 'Alan', 'Turing', '10:00-10:50', 'MWF', 'SUMMER', 2022, 3);"""
-cursor.execute(sql_command) 
-sql_command = """INSERT OR IGNORE INTO COURSE VALUES('1004', 'Youth Development', 'HUS', 'Katie', 'Bouman', '3:00-4:50', 'TR', 'SUMMER', 2022, 4);"""
-cursor.execute(sql_command)
-
-sql_command = """DELETE FROM STUDENT_COURSE WHERE INCREMENT = 9 """
-cursor.execute(sql_command)
 class User: #base class
 	def __init__(self,first,last,id):
 		self.firstname = first
@@ -129,6 +118,7 @@ class instructor(User): #derived class
             name_result = cursor.fetchall()
             for j in name_result: # finds the student name from Student table
                 print(j)
+                return name_result
 
     def searchCourse(self):
         print("\nCourse List: ")
@@ -256,11 +246,11 @@ def checkInstructorPassword(usernames, passwords): #log in for the instructor
             print(z)
             for y in x:
                 if z == 0:
-                    lastName = y
-                    print(lastName)
-                if z == 1:
-                    firstName  = y
+                    firstName = y
                     print(firstName)
+                if z == 1:
+                    lastName  = y
+                    print(lastName)
                 if z == 2:
                     id = y
                     print(id)
@@ -284,11 +274,11 @@ def checkStudentPassword(usernames, passwords): #log in for the student
             print(z)
             for y in x:
                 if z == 0:
-                    lastName = y
-                    print(lastName)
-                if z == 1:
-                    firstName  = y
+                    firstName = y
                     print(firstName)
+                if z == 1:
+                    lastName  = y
+                    print(lastName)
                 if z == 2:
                     id = y
                     print(id)
@@ -312,11 +302,11 @@ def checkAdminPassword(usernames, passwords): #log in for the admin
             #print(z)
             for y in x:
                 if z == 0:
-                    lastName = y
-                    print(lastName)
-                if z == 1:
-                    firstName  = y
+                    firstName = y
                     print(firstName)
+                if z == 1:
+                    lastName  = y
+                    print(lastName)
                 if z == 2:
                     id = y
                     print(id)
@@ -335,8 +325,6 @@ def login(): # function for the log in
     userName = input("Please Enter your Username: ")
     password = input("Please Enter your Password: ") 
     return userName,password
-
-
 
 print("Welcome to the Student Database")
 z = 0
@@ -446,7 +434,6 @@ while inTheWorks:
                     inTheWorks = None
                 else:
                     print("That number isn't valid try again")
-        else:
             print("Wrong username/Password try again") # if incorrect password/username is entered
             username, passWord = login() #takes the tuple from the login
             result = checkInstructorPassword(username, passWord) 
