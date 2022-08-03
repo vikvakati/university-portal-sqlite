@@ -136,7 +136,7 @@ class instructor(User): #derived class
         for i in courseInput_result:
              print(i)
  
-class student(User):
+class student(User): #derived class
     def __init__(self, FirstName, LastName, ID):
         super(student, self).__init__(FirstName, LastName, ID)
 
@@ -147,7 +147,7 @@ class student(User):
         # y = input()
         cursor.execute("""SELECT NAME 
         FROM STUDENT_COURSE
-        WHERE CRN = ? and ID = ? """(x,self.ID))
+        WHERE CRN = ? and ID = ? """ ,(x,self.ID))
         result = cursor.fetchall()
         if result:
             print("You have already added this course")
@@ -181,11 +181,11 @@ class student(User):
              print(i)
 
 
-class admin(User):
+class admin(User): # derived class
     def __init__(self, FirstName, LastName, ID):
         super(admin, self).__init__(FirstName, LastName, ID)
 
-    def addCourseSystem():
+    def addCourseSystem(self):
         print("CRN: ")
         q = input()
         print("Course Title: ")
@@ -210,21 +210,21 @@ class admin(User):
 
         print("\n Course Added To System")
 
-    def dropCourseSystem():
+    def dropCourseSystem(self):
         print("CRN: ")
         x = input()
         cursor.execute("DELETE FROM COURSE WHERE CRN=%s" ""% (x))
 
         print("\n Course Removed From System")
 
-    def searchCourse():
+    def searchCourse(self):
         print("\nCourse List: ")
         cursor.execute("""SELECT * FROM COURSE""")
         course_result = cursor.fetchall()
         for i in course_result:
             print(i)
 
-    def searchCourseInput():
+    def searchCourseInput(self):
         print("Enter Search Parameter: ")
         x = input()
         cursor.execute("""SELECT * 
@@ -233,6 +233,147 @@ class admin(User):
         courseInput_result = cursor.fetchall()
         for i in courseInput_result:
              print(i)
+    def addStudent():
+        print("ID: ")
+        i = input()
+        print("First Name: ")
+        f = input()
+        print("Last name: ")
+        l = input()
+        print("Grad year: ")
+        g = input()
+        print("Major: ")
+        m = input()
+        print("Email: ")
+        e = input()
+
+        cursor.execute(""""INSERT OR IGNORE INTO STUDENT VALUES(?,?,?,?,?,?)""",(i, f, l, g, m, e))
+        print("The student has been added to the database")
+    def addInstructor(self):
+        print("ID: ")
+        i = input()
+        print("Name: ")
+        n = input()
+        print("Last name: ")
+        l = input()
+        print("Title: ")
+        t = input()
+        print("Hire year: ")
+        h = input()
+        print("Department: ")
+        d = input()
+        print("Email")
+        e = input()
+
+        cursor.execute("""INSERT OR IGNORE INTO INSTRUCTOR VALUES (?,?,?,?,?,?,?)""" ,(i, n, l, t, h, d, e))
+
+        print("The Instructor has been added to the database")
+    def linkStudent(self):
+        x = 0
+        while x == 0:
+            print("What is the student's id")
+            id = input()
+            print("What is the Course CRN")
+            crn = input()
+            cursor.execute(""" SELECT *
+            FROM STUDENT,COURSE
+            WHERE STUDENT.ID = '%s' and COURSE.CRN = '%s'
+            """ %(id,crn))
+            query_result = cursor.fetchall()
+            if not query_result:
+                print("The Student Id or the CRN is incorrect , isnt correct please enter the correct Id")
+            else:
+                cursor.execute(""" INSERT OR IGNORE INTO STUDENT_COURSE VALUES (NULL,?,?)""" ,(crn,id))
+                print("You have added this student to the course")
+                x = 1
+
+
+    def unlinkStudent(self):
+        x = 0
+        while x == 0:
+                print("What is the student's Id: ")
+                id = input()
+                print("What is the CRN: ")
+                Crn = input()
+                cursor.execute(""" SELECT *
+                FROM STUDENT_COURSE
+                WHERE STUDENT_COURSE.ID = '%s' and STUDENT_COURSE.CRN ='%s' 
+                """%(id, Crn))
+                query_result = cursor.fetchall()
+                if not query_result:
+                    x = 0
+                    print("You have entered the wrong info please try again")
+                else:
+                        cursor.execute(""" DELETE FRO6M
+                        STUDENT_COURSE WHERE STUDENT_COURSE.ID = '%s' and STUDENT_COURSE.CRN = '%s'
+                        """%(id, Crn))
+                        print("You have removed this student from this course ")
+                        x = 1
+
+    def linkInstructor(self):
+        
+        x = 0
+        while x == 0:
+            print("What is the crn of the class would you like to change the professor for: ")
+            crn = input()
+            cursor.execute(""" Select *
+            FROM COURSE
+            WHERE COURSE.CRN = '%s'
+            """%(crn))
+            query_result = cursor.fetchall()
+            if not query_result:
+                print("You have entered invalid info ")
+            else:
+                print("What is the professor's ID that you want to teach this course")
+                newProff = input()
+                cursor.execute(""" Select INSTRUCTOR.NAME,INSTRUCTOR.SURNAME
+                FROM INSTRUCTOR
+                WHERE INSTRUCTOR.ID = '%s'  
+                """%(newProff))
+                query_result = cursor.fetchall()
+                print(query_result)
+                c = 0
+                for a in query_result:
+                    for b in a:
+                        if c == 0:
+                            name = b
+                        if c == 1:
+                            last_name = b
+                        c += 1
+                print(name)
+                print(last_name)
+                print(crn)
+                if not query_result:
+                    print("You have entered the wrong data please try again")
+                    x = 0
+                else:
+                    cursor.execute("""
+                    UPDATE COURSE
+                    SET INSTRUCTOR_FIRST = '%s', INSTRUCTOR_LAST = '%s' 
+                    WHERE CRN = '%s' """ %(name, last_name, crn))
+                    print("You have succesfully changed the professor for this class")
+                    x = 1
+    def unLinkInstructor(self):
+        x = 0
+        while x == 0:
+            print("What is the crn of the class would you like unlist the professor from: ")
+            crn = input()
+            cursor.execute(""" Select *
+            FROM COURSE
+            WHERE COURSE.CRN = '%s'
+            """%(crn))
+            query_result = cursor.fetchall()
+            if not query_result:
+                print("You have entered invalid info ")
+            else:
+                    cursor.execute("""
+                    UPDATE COURSE
+                    SET INSTRUCTOR_FIRST = 'empty' , INSTRUCTOR_LAST = 'empty'
+                    WHERE CRN = '%s' """ %(crn))
+                    print("You have succesfully unlisted the professor for this class")
+                    x = 1
+            
+
 
 
 def checkInstructorPassword(usernames, passwords): #log in for the instructor
@@ -325,9 +466,8 @@ def login(): # function for the log in
     userName = input("Please Enter your Username: ")
     password = input("Please Enter your Password: ") 
     return userName,password
-
 print("Welcome to the Student Database")
-z = 0
+z = 0 # this variable controls if the user goes to the next slide
 while(z == 0):
     print(" Look at the options below chose from the number 1 -3")
     print("If you are an instructor enter 1 ")
@@ -340,10 +480,10 @@ while(z == 0):
         inTheWorks = False
         z = 0
     else:
-        z = 1
-        inTheWorks = True
+        z = 1 # goes to the next slide if the user enters a valid number
+        inTheWorks = 1
 y = 1
-while inTheWorks:
+while  inTheWorks == 1:
     if userInput == '1': # if user selects instructor
         username, passWord = login() #takes the tuple from the login
         firstName,lastName,id  = checkInstructorPassword(username, passWord) # Gives the attributes needed for the instructor class
@@ -367,7 +507,7 @@ while inTheWorks:
                     i.searchCourseInput()
                 elif(choice == "4"):
                     y = None
-                    inTheWorks = None
+                    inTheWorks = 0
                 else:
                     print("That number isn't valid try again")
 
@@ -399,7 +539,7 @@ while inTheWorks:
                     s.searchCourseInput()
                     print("I have been called")
                 elif(choice == "5"):
-                    y = None
+                    y = 0
                     inTheWorks = None
                 else:
                     print("That number isn't valid try again")
@@ -407,7 +547,6 @@ while inTheWorks:
             print("Wrong username/Password try again")# if incorrect password/username is entered
             username, passWord = login() #takes the tuple from the login
             result = checkInstructorPassword(username, passWord)# checks again to see if the  the login is incorrect
-
     elif userInput == '3':
         username, passWord = login()
         firstName,lastName,id  = checkAdminPassword(username, passWord) #takes the tuple from the login
@@ -419,7 +558,11 @@ while inTheWorks:
                 print("Drop course option press 2")
                 print("Search all Courses press 3")
                 print("Search by parameter press 4")
-                print("Log out press 5")
+                print("If you would like to remove a student from a class press 5")
+                print("If you want to add student to a Course press 6")
+                print("List Instructor press 7 ")
+                print("Unlist Instructor press 8")
+                print("Log out press 9")
                 choice = input()
                 if(choice == "1"):
                     a.addCourseSystem()
@@ -430,17 +573,26 @@ while inTheWorks:
                 elif(choice == "4"):
                     a.searchCourseInput()
                 elif(choice == "5"):
-                    y = None
-                    inTheWorks = None
+                    a.unlinkStudent()
+                elif(choice == "6"):
+                    a.linkStudent()
+                elif(choice == "7"):
+                    a.linkInstructor()
+                elif(choice == "8"):
+                    a.unLinkInstructor()
+                elif(choice == "9"):
+                    y = 0
+                    inTheWorks = 0 
+                    break
+
                 else:
                     print("That number isn't valid try again")
-            print("Wrong username/Password try again") # if incorrect password/username is entered
-            username, passWord = login() #takes the tuple from the login
-            result = checkInstructorPassword(username, passWord) 
-else:
-        print("input doesnt exist")
-
-            
+        else:    
+                print("Wrong username/Password try again") # if incorrect password/username is entered
+                username, passWord = login() #takes the tuple from the login
+                result = checkInstructorPassword(username, passWord) 
+    else:
+        print("That number is not valid")
             
 
 conn.commit()
