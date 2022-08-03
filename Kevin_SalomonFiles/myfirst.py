@@ -1,6 +1,6 @@
 #!/usr/bin/python
 import sqlite3
-conn = sqlite3.connect('assignment3.db')
+conn = sqlite3.connect('leopardweb.db')
 print("Opened database successfully")
 cursor = conn.cursor()
 #sql_command = """CREATE TABLE COURSE(
