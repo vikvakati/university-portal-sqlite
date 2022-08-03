@@ -3,81 +3,6 @@ import sqlite3
 conn = sqlite3.connect('leopardweb.db')
 print("Opened database successfully")
 cursor = conn.cursor()
-#sql_command = """CREATE TABLE COURSE(
-#CRN INTEGER PRIMARY KEY NOT NULL,
-#TITLE TEXT NOT NULL,
-# department TEXT NOT NULL,
-# time TEXT NOT NULL,
-# days of week TEXT NOT NULL,
-# semester TEXT NOT NULL,
-# year INT NOT NULL,
-#  credits  INT NOT NULL);"""
-
-#sql_command = """ INSERT or IGNORE INTO COURSE VALUES( 447123, 'EMF','ECE', '11:00AM-1:00PM', 'Tuesday,Thursday', 'Summer', 2022, 4);"""
-#cursor.execute(sql_command)
-
-#sql_command = """ INSERT or IGNORE INTO COURSE VALUES(29581, 'Solid State Devices', 'ECE', '8:00 AM - 9:30 AM', 'Tuesday,Thursday', 'Summer', 2022, 3);"""
-#cursor.execute(sql_command)
-
-#sql_command = """ INSERT or IGNORE INTO COURSE VALUES(2, 'Feedback and Control', 'ECE', '2:00 PM - 3:30 PM', 'Wednesday,Friday', 'Summer', 2022, 4);"""
-#cursor.execute(sql_command)
-
-
-# sql_command = """ INSERT or IGNORE INTO COURSE VALUES(56757, 'ART History', 'liberal arts ', '3:30 PM - 5:30 PM', 'Monday-Wednesday', 'Summer', 2022, 4);"""
-# #cursor.execute(sql_command)
-
-# sql_command = """ INSERT or ignore INTO STUDENT VALUES(378216, 'Stephen', 'Curry', 2023, 'ME', 'CurryS');"""
-# #cursor.execute(sql_command)
-
-# sql_command = """ INSERT or ignore INTO STUDENT VALUES(365655, 'Lebron', 'James', 2022, 'EE', 'JamesL');"""
-# #cursor.execute(sql_command)
-
-# #sql_command = """DELETE FROM INSTRUCTOR where NAME = 'Joseph'"""
-# #print ("Operation done successfully")
-
-# sql_command = """ UPDATE ADMIN SET TITLE = 'Vice president' where ID = 30001 """
-# #cursor.execute(sql_command)
-
-
-# sql_command = """ UPDATE Course SET department = 'HUSS' where department = 'liberal arts ' """
-
-
-# sql_command = """CREATE TABLE IF NOT EXISTS STUDENT_COURSE (  
-# INCREMENT INTEGER PRIMARY KEY,
-# CRN TEXT NOT NULL,
-# ID TEXT NOT NULL)
-# ;"""
-# cursor.execute(sql_command) 
-
-# sql_command = """CREATE TABLE IF NOT EXISTS INSTRUCTOR_COURSE (  
-# INCREMENT INTEGER PRIMARY KEY,
-# CRN TEXT NOT NULL,
-# ID TEXT NOT NULL)
-# ;"""
-# cursor.execute(sql_command)
-
-# #cursor.execute("DROP TABLE COURSE")
-
-# sql_command = """CREATE TABLE IF NOT EXISTS COURSE (  
-# CRN TEXT UNIQUE NOT NULL,
-# TITLE TEXT NOT NULL,
-# DEPARTMENT TEXT NOT NULL,
-# INSTRUCTOR_FIRST TEXT NOT NULL,
-# INSTRUCTOR_LAST TEXT NOT NULL,
-# TIME TEXT NOT NULL,
-# DAYS TEXT NOT NULL,
-# SEMESTER TEXT NOT NULL,
-# YEAR TEXT NOT NULL,
-# CREDITS TEXT NOT NULL)
-# ;"""
-
-# cursor.execute(sql_command)
-
-
-
-#sql_command = """INSERT OR IGNORE INTO COURSE VALUES('1000', 'APPLIED PROGRAMMING CONCEPTS', 'ELEC', 'Joseph', 'Forier', '8:00-9:50', 'MWF', 'SUMMER', 2022, 4);"""
-#cursor.execute(sql_command) 
-
 class User: #base class
 	def __init__(self,first,last,id):
 		self.firstname = first
@@ -593,7 +518,6 @@ while  inTheWorks == 1:
                 result = checkInstructorPassword(username, passWord) 
     else:
         print("That number is not valid")
-            
 
 conn.commit()
 conn.close()
