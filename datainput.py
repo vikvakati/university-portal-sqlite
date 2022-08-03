@@ -2,22 +2,22 @@ import sqlite3
 conn = sqlite3.connect('leopardweb.db')
 print("Opened database successfully")
 cursor = conn.cursor()
-addcourses = """ INSERT or IGNORE INTO COURSE VALUES
-(1005, 'ADVANCED MOLECULAR BIOLOGY', 'BIOL', 'Nelson', 'Patrick', '12:30 pm-01:50 pm', 'MW', 'FALL', 2022, 4),
-(1006, 'ADVANCED MOLECULAR BIOLOGY-LAB', 'BIOL', 'Nelson', 'Patrick', '01:00 pm-02:50 pm', 'T', 'FALL', 2022, 0),
-(1007, 'ADVANCED MOLECULAR BIOLOGY-LAB', 'BIOL', 'Nelson', 'Patrick', '10:00 am-11:50 am', 'T', 'FALL', 2022, 0),
-(1008, 'STATISTICS & MECHANICS MATERIALS I', 'CIVE', 'Leonard', 'Anderson', '08:00 am-09:20 am', 'MW', 'FALL', 2022, 3),
-(1009, 'MEDICAL IMAGING & OPTICS', 'BMED', 'Ronald', 'Bernier', '08:00 am-09:20 am', 'TW', 'FALL', 2022, 4),
-(1010, 'MEDICAL IMAGING & OPTICS-LAB', 'BMED', 'Ronald', 'Bernier', '01:00 pm-02:50 pm', 'M', 'FALL', 2022, 0),
-(1011, 'PARTIAL DIFFERENTIAL EQUATIONS', 'MATH', 'Saurav', 'Basnet', '03:30 pm-04:45 pm', 'MWF', 'FALL', 2022, 4),
-(1012, '2D + 3D MEDIA & PROCESS', 'ARCH', 'Ann', 'Borst', '01:00 pm-04:50 pm', 'F', 'FALL', 2022, 4),
-(1000, 'APPLIED PROGRAMMING CONCEPTS', 'ELEC', 'Joseph', 'Forier', '8:00 am-9:50 am', 'MWF', 'SUMMER', 2022, 4),
-(1001, 'SENIOR DESIGN', 'ELEC', 'Patrick', 'Nelson', '10:00 am-12:50 pm', 'TR', 'SUMMER', 2022, 4),
-(1002, 'CHEMISTRY', 'SCIN', 'Galilei', 'Galileo', '8:00 am-9:20 am', 'TR', 'SUMMER', 2022, 4),
-(1003, 'COMPUTER NETWORKS', 'ELEC', 'Alan', 'Turing', '10:00 am-10:50 am', 'MWF', 'SUMMER', 2022, 3),
-(1004, 'YOUTH DEVELOPMENT', 'HUSS', 'Katie', 'Bouman', '3:00 pm-4:50 pm', 'TR', 'SUMMER', 2022, 4);"""
+addcourses = """ INSERT OR IGNORE INTO COURSE VALUES
+(1005, 'ADVANCED MOLECULAR BIOLOGY', 'BIOL', 'Nelson', 'Patrick', 'FALL', 2022, 4, '12:30PM', '1:50PM', 'YES', 'NO', 'YES', 'NO', 'NO'),
+(1006, 'ADVANCED MOLECULAR BIOLOGY-LAB', 'BIOL', 'Nelson', 'Patrick', 'FALL', 2022, 0, '1:00PM', '2:50', 'NO', 'YES', 'NO','NO', 'NO'),
+(1007, 'ADVANCED MOLECULAR BIOLOGY-LAB', 'BIOL', 'Nelson', 'Patrick', 'FALL', 2022, 0, '10:00AM', '11:50AM', 'NO', 'YES','NO', 'NO', 'NO'),
+(1008, 'STATISTICS & MECHANICS MATERIALS I', 'CIVE', 'Leonard', 'Anderson', 'FALL', 2022, 3, '8:00AM', '9:20AM', 'YES', 'NO','YES', 'NO', 'NO'),
+(1009, 'MEDICAL IMAGING & OPTICS', 'BMED', 'Ronald', 'Bernier', 'FALL',  2022, 4, '8:00AM', '9:20AM', 'NO', 'YES','YES', 'NO', 'NO'),
+(1010, 'MEDICAL IMAGING & OPTICS-LAB', 'BMED', 'Ronald', 'Bernier', 'FALL', 2022, 0, '1:00PM', '2:50PM', 'YES', 'NO','NO', 'NO','NO'),
+(1011, 'PARTIAL DIFFERENTIAL EQUATIONS', 'MATH', 'Saurav', 'Basnet', 'FALL', 2022, 4, '3:30PM', '4:45PM', 'YES', 'NO','YES', 'NO', 'YES'),
+(1012, '2D + 3D MEDIA & PROCESS', 'ARCH', 'Ann', 'Borst', 'FALL', 2022, 4, '1:00PM', '4:50PM', 'NO', 'NO','NO', 'NO', 'YES'),
+(1000, 'APPLIED PROGRAMMING CONCEPTS', 'ELEC', 'Joseph', 'Forier', 'SUMMER', 2022, 4, '8:00AM', '9:50AM', 'YES', 'NO','YES', 'NO', 'YES'),
+(1001, 'SENIOR DESIGN', 'ELEC', 'Patrick', 'Nelson', 'SUMMER', 2022, 4, '10:00AM', '12:50PM', 'NO', 'YES','NO', 'YES', 'NO'),
+(1002, 'CHEMISTRY', 'SCIN', 'Galilei', 'Galileo', 'SUMMER', 2022, 4, '8:00AM', '9:20AM', 'NO', 'YES','NO', 'YES', 'NO'),
+(1003, 'COMPUTER NETWORKS', 'ELEC', 'Alan', 'Turing', 'SUMMER', 2022, 3, '10:00AM', '10:50AM', 'YES', 'NO','YES', 'NO', 'YES'),
+(1004, 'YOUTH DEVELOPMENT', 'HUSS', 'Katie', 'Bouman', 'SUMMER', 2022, 4, '3:00PM', '4:50PM', 'NO', 'YES','NO', 'YES', 'NO');"""
 cursor.execute(addcourses)
-addinstructors = """ INSERT or IGNORE INTO INSTRUCTOR VALUES
+addinstructors = """ INSERT OR IGNORE INTO INSTRUCTOR VALUES
 (20007, 'Leonard', 'Anderson', 'Associate Professor', 1994, 'BCE', 'andersonl'),
 (20008, 'Mohammed', 'Anwaruddin', 'Assistant Professor', 2010, 'BSCN', 'anwaruddinm'),
 (20009, 'Tugba', 'Arsava', 'Associate Professor', 2004, 'BCE', 'arsavat'),
@@ -29,7 +29,7 @@ addinstructors = """ INSERT or IGNORE INTO INSTRUCTOR VALUES
 (20015, 'Ann', 'Borst', 'Professor', 1983, 'BA', 'andersonl'),
 (20016, 'Christopher', 'Brigham', 'Associate Professor', 2006, 'BSBE', 'brighamc2');"""
 cursor.execute(addinstructors)
-addstudents = """ INSERT or IGNORE INTO STUDENT VALUES
+addstudents = """ INSERT OR IGNORE INTO STUDENT VALUES
 (387628, 'Matthew', 'Taylor', 2023, 'BSCO', 'taylorm6'),
 (10011, 'Antonio', 'Nelson', 2023, 'BSIS', 'nelsona5'),
 (10012, 'Ryan', 'Martin', 2025, 'BSEE', 'martinr2'),
