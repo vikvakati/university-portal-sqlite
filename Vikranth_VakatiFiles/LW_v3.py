@@ -7,7 +7,6 @@ conn = sqlite3.connect('leopardweb.db')
 print("Opened database successfully")
 cursor = conn.cursor()
 
-
 class User: #base class
 	def __init__(self,first,last,id):
 		self.firstname = first
@@ -92,35 +91,42 @@ class student(User): #derived class
         WHERE ID = '%s' """% (self.ID))
         crn_result = cursor.fetchall()
 
-        timeConflict = False
         if crn_result: 
             for i in crn_result:
-                cursor.execute("""SELECT TIME, DAYS 
+                timeConflict = False
+                checkDay = False
+                courseConflict = False
+
+                cursor.execute("""SELECT STARTTIME, ENDTIME, MON, TUES, WED, THUR, FRI 
                 FROM COURSE
                 WHERE CRN = ? """ ,(i))
                 schedule_result = cursor.fetchall()
-                split_time = schedule_result[0][0].split("-")
 
-                start = datetime.strptime(split_time[0], '%I:%M %p')
-                end = datetime.strptime(split_time[1], '%I:%M %p')
+                start = datetime.strptime(schedule_result[0][0], '%I:%M%p')
+                end = datetime.strptime(schedule_result[0][1], '%I:%M%p')
 
-                cursor.execute("""SELECT TIME, DAYS 
+                cursor.execute("""SELECT STARTTIME, ENDTIME, MON, TUES, WED, THUR, FRI 
                 FROM COURSE
                 WHERE CRN = ? """ ,(x,))
                 check_result = cursor.fetchall()
-                splitCheck_time = check_result[0][0].split("-")
 
-                startCheck = datetime.strptime(splitCheck_time[0], '%I:%M %p')
-                endCheck = datetime.strptime(splitCheck_time[1], '%I:%M %p')
+                startCheck = datetime.strptime(check_result[0][0], '%I:%M%p')
+                endCheck = datetime.strptime(check_result[0][1], '%I:%M%p')
                 
-                checkCondition = ((startCheck >= start and startCheck <= end) or (endCheck <= end and endCheck >= start)) #add and days equal
-                if (checkCondition and not timeConflict):
-                    timeConflict = True
+                checkTime = ((startCheck >= start and startCheck <= end) or (endCheck <= end and endCheck >= start))
 
-            if (x == crn_result[0][0]): 
-                print("You have already added this course")
-            elif(timeConflict):
-                print("Cannot Add Course: Time Conflict") 
+                if (x == i[0]):
+                    courseConflict = True
+                if ((check_result[0][2]=='YES' and schedule_result[0][2]=='YES') or (check_result[0][3]=='YES' and schedule_result[0][3]=='YES') or (check_result[0][4]=='YES' and schedule_result[0][4]=='YES') or (check_result[0][5]=='YES' and schedule_result[0][5]=='YES') or (check_result[0][6]=='YES' and schedule_result[0][6]=='YES')):
+                    checkDay = True
+                    if (checkTime and not timeConflict):
+                        timeConflict = True
+
+            if(checkDay and timeConflict):
+                if (courseConflict): 
+                    print("You have already added this course")
+                else:
+                    print("Cannot Add Course: Time Conflict") 
             else:
                 cursor.execute("""INSERT OR IGNORE INTO STUDENT_COURSE VALUES(NULL, ?, ?)""", (x, self.ID))
                 print("\nCourse Added To Schedule")
