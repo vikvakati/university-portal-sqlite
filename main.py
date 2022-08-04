@@ -1,8 +1,8 @@
-#!/usr/bin/python
 import sqlite3
 conn = sqlite3.connect('leopardweb.db')
 print("Opened database successfully")
 cursor = conn.cursor()
+#!/usr/bin/python
 class User: #base class
 	def __init__(self,first,last,id):
 		self.firstname = first
@@ -521,4 +521,3 @@ while  inTheWorks == 1:
 
 conn.commit()
 conn.close()
-
