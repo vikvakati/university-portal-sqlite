@@ -564,9 +564,7 @@ def checkInstructorPassword(usernames, passwords): #log in for the instructor
         WHERE INSTRUCTOR.EMAIL = '%s' and INSTRUCTOR.ID = '%s'""" %(usernames, passwords))
         query_result = cursor.fetchall()
         z = 0
-        print(z)
         for x in query_result:
-            print(z)
             for y in x:
                 if z == 0:
                     firstName = y
@@ -592,9 +590,7 @@ def checkStudentPassword(usernames, passwords): #log in for the student
         WHERE STUDENT.EMAIL = '%s' and STUDENT.ID = '%s'""" %(usernames, passwords))
         query_result = cursor.fetchall()
         z = 0
-        print(z)
         for x in query_result:
-            print(z)
             for y in x:
                 if z == 0:
                     firstName = y
@@ -620,9 +616,7 @@ def checkAdminPassword(usernames, passwords): #log in for the admin
         WHERE ADMIN.EMAIL = '%s' and ADMIN.ID = '%s'""" %(usernames, passwords))
         query_result = cursor.fetchall()
         z = 0
-        #print(z)
         for x in query_result:
-            #print(z)
             for y in x:
                 if z == 0:
                     firstName = y
@@ -697,8 +691,6 @@ while  inTheWorks == 1:
                     print("That number isn't valid try again: ")
         else:
             print("Wrong username/Password try again") # if incorrect password/username is entered
-            #username, passWord = login() #takes the tuple from the login
-            #result = checkInstructorPassword(username, passWord) # checks again to see if the  the login is incorrect
     elif userInput == '2':
         username, passWord = login() #takes the tuple from the login
         firstName,lastName,id  = checkStudentPassword(username, passWord)
@@ -733,8 +725,6 @@ while  inTheWorks == 1:
                     print("Invalid choice, try again: ")
         else:
             print("Wrong username/Password try again")# if incorrect password/username is entered
-            username, passWord = login() #takes the tuple from the login
-            result = checkInstructorPassword(username, passWord)# checks again to see if the  the login is incorrect
     elif userInput == '3':
         username, passWord = login()
         firstName,lastName,id  = checkAdminPassword(username, passWord) #takes the tuple from the login
@@ -778,8 +768,6 @@ while  inTheWorks == 1:
                     print("That number isn't valid try again")
         else:    
                 print("Wrong username/Password try again") # if incorrect password/username is entered
-                username, passWord = login() #takes the tuple from the login
-                result = checkInstructorPassword(username, passWord) 
     else:
         print("That number is not valid")
             
