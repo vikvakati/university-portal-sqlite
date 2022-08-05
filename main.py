@@ -347,7 +347,7 @@ class admin(User): # derived class
         print("Friday (if scheduled for Friday, enter 'YES'): ")
         z = input()
 
-        cursor.execute("""INSERT OR IGNORE INTO COURSE VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""", (l, m, n, o, p, q, r, s, t, u, v, w, x, y, z))
+        cursor.execute("""INSERT OR IGNORE INTO COURSE VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""", (l, m, n, o, p, q, r, s, t, u, v, w, x, y, z))
 
         print("\n Course Added To System")
 
@@ -697,8 +697,8 @@ while  inTheWorks == 1:
                     print("That number isn't valid try again: ")
         else:
             print("Wrong username/Password try again") # if incorrect password/username is entered
-            username, passWord = login() #takes the tuple from the login
-            result = checkInstructorPassword(username, passWord) # checks again to see if the  the login is incorrect
+            #username, passWord = login() #takes the tuple from the login
+            #result = checkInstructorPassword(username, passWord) # checks again to see if the  the login is incorrect
     elif userInput == '2':
         username, passWord = login() #takes the tuple from the login
         firstName,lastName,id  = checkStudentPassword(username, passWord)
