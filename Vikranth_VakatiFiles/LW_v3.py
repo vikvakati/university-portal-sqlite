@@ -1,7 +1,6 @@
 #!/usr/bin/python
 import sqlite3
 from datetime import datetime
-import re
 
 conn = sqlite3.connect('leopardweb.db')
 print("Opened database successfully")
@@ -28,7 +27,6 @@ class instructor(User): #derived class
     
     def printRoster(self):
         z = False
-        print(self.firstname)
         while z == 0:
             print("CRN: ")
             x = input()
@@ -46,8 +44,7 @@ class instructor(User): #derived class
             cursor.execute("SELECT NAME, SURNAME FROM STUDENT WHERE ID= %s" ""%(i))
             name_result = cursor.fetchall()
             for j in name_result: # finds the student name from Student table
-                print(j)
-                return name_result
+                print(j[0], j[1], "\n")
 
     def searchCourse(self):
         print("\nCourse List: ")
@@ -116,6 +113,7 @@ class instructor(User): #derived class
         WHERE INSTRUCTOR_FIRST = ? and INSTRUCTOR_LAST = ? """, (self.firstname, self.lastname))
         schedule_result = cursor.fetchall()
 
+        print("Semester Course Schedule: ")
         for course in schedule_result:
                 if (course[3] == 'YES'):
                     day1 = "M "
@@ -310,6 +308,7 @@ class student(User): #derived class
                 else:
                     day5 = ""
                 days = day1 + day2 + day3 + day4 + day5
+                print("Semester Course Schedule: ")
                 print("TITLE: ", course[0], "\tINSTRUCTOR NAME: ", course[1], course[2], "\tDAYS: ", days, "\tTIME: ", course[3], "-", course[4], "\n")
 
 class admin(User): # derived class
