@@ -53,26 +53,92 @@ class instructor(User): #derived class
         print("\nCourse List: ")
         cursor.execute("""SELECT * FROM COURSE""")
         course_result = cursor.fetchall()
-        for i in course_result:
-            print(i)
+        for course in course_result:
+            if (course[10] == 'YES'):
+                day1 = "M "
+            else:
+                day1 = ""
+            if (course[11] == 'YES'):  
+                day2 = "T "
+            else:
+                day2 = ""
+            if (course[12] == 'YES'):
+                day3 = "W "
+            else:
+                day3 = ""
+            if (course[13] == 'YES'):
+                day4 = "TR "
+            else:
+                day4 = ""
+            if (course[14] == 'YES'):
+                day5 = "F "
+            else:
+                day5 = ""
+            days = day1 + day2 + day3 + day4 + day5
+            print("CRN: ", course[0], "\tDEPARTMENT: ", course[2],"\tTITLE: ", course[1], "\tINSTRUCTOR NAME: ", course[3], " ", course[4], "\tCREDITS: ", course[7], "\tDAYS: ", days, "\tTIME: ", course[8], "-", course[9], "\n")
     
     def searchCourseInput(self):
-        print("Enter Search Parameter: ")
+        print("Search Course By Parameter")
+        print("Options:\nCRN\nCOURSE TITLE\nCOURSE DEPARTMENT\nINSTRUCTOR NAME\n")
+        print("Enter Search Query: ")
         x = input()
         cursor.execute("""SELECT * 
         FROM COURSE 
-        WHERE CRN='%s' OR TITLE='%s' OR DEPARTMENT='%s' OR INSTRUCTOR_FIRST='%s' OR INSTRUCTOR_LAST='%s' OR TIME='%s' OR DAYS='%s' OR SEMESTER='%s' OR YEAR='%s' OR CREDITS='%s' """% (x, x, x, x, x, x, x, x, x, x))
+        WHERE CRN='%s' OR TITLE='%s' OR DEPARTMENT='%s' OR INSTRUCTOR_FIRST='%s' OR INSTRUCTOR_LAST='%s' OR CREDITS='%s' """% (x, x, x, x, x, x))
         courseInput_result = cursor.fetchall()
-        for i in courseInput_result:
-             print(i)
+        for course in courseInput_result:
+            if (course[10] == 'YES'):
+                day1 = "M "
+            else:
+                day1 = ""
+            if (course[11] == 'YES'):  
+                day2 = "T "
+            else:
+                day2 = ""
+            if (course[12] == 'YES'):
+                day3 = "W "
+            else:
+                day3 = ""
+            if (course[13] == 'YES'):
+                day4 = "TR "
+            else:
+                day4 = ""
+            if (course[14] == 'YES'):
+                day5 = "F "
+            else:
+                day5 = ""
+            days = day1 + day2 + day3 + day4 + day5
+            print("CRN: ", course[0], "\tDEPARTMENT: ", course[2],"\tTITLE: ", course[1], "\tINSTRUCTOR NAME: ", course[3], " ", course[4], "\tCREDITS: ", course[7], "\tDAYS: ", days, "\tTIME: ", course[8], "-", course[9], "\n")
 
     def printSchedule(self):
-        cursor.execute("""SELECT TITLE, TIME 
+        cursor.execute("""SELECT TITLE, STARTTIME, ENDTIME, MON, TUES, WED, THUR, FRI 
         FROM COURSE
         WHERE INSTRUCTOR_FIRST = ? and INSTRUCTOR_LAST = ? """, (self.firstname, self.lastname))
         schedule_result = cursor.fetchall()
 
-        print(schedule_result)
+        for course in schedule_result:
+                if (course[3] == 'YES'):
+                    day1 = "M "
+                else:
+                    day1 = ""
+                if (course[4] == 'YES'):  
+                    day2 = "T "
+                else:
+                    day2 = ""
+                if (course[5] == 'YES'):
+                    day3 = "W "
+                else:
+                    day3 = ""
+                if (course[6] == 'YES'):
+                    day4 = "TR "
+                else:
+                    day4 = ""
+                if (course[7] == 'YES'):
+                    day5 = "F "
+                else:
+                    day5 = ""
+                days = day1 + day2 + day3 + day4 + day5
+                print("TITLE: ", course[0], "\tDAYS: ", days, "\tTIME: ", course[1], "-", course[2], "\n")
  
 class student(User): #derived class
     def __init__(self, FirstName, LastName, ID):
@@ -138,25 +204,77 @@ class student(User): #derived class
         print("CRN: ")
         x = input()
 
-        cursor.execute("DELETE from STUDENT_COURSE where CRN=? AND ID =?", (x, self.ID))
-        print("\n Course Deleted From Schedule")
+        cursor.execute("""SELECT CRN 
+        FROM STUDENT_COURSE
+        WHERE CRN = ? """ ,(x,))
+        crn_result = cursor.fetchall()
+
+        if crn_result:
+            cursor.execute("DELETE from STUDENT_COURSE where CRN=? AND ID =?", (x, self.ID))
+            print("\n Course Removed From Schedule")
+        else:
+            print("You Are Not Enrolled In This Course")
 
     def searchCourse(self):
         print("\nCourse List: ")
         cursor.execute("""SELECT * FROM COURSE""")
         course_result = cursor.fetchall()
-        for i in course_result:
-            print(i)
-
+        for course in course_result:
+            if (course[10] == 'YES'):
+                day1 = "M "
+            else:
+                day1 = ""
+            if (course[11] == 'YES'):  
+                day2 = "T "
+            else:
+                day2 = ""
+            if (course[12] == 'YES'):
+                day3 = "W "
+            else:
+                day3 = ""
+            if (course[13] == 'YES'):
+                day4 = "TR "
+            else:
+                day4 = ""
+            if (course[14] == 'YES'):
+                day5 = "F "
+            else:
+                day5 = ""
+            days = day1 + day2 + day3 + day4 + day5
+            print("CRN: ", course[0], "\tDEPARTMENT: ", course[2],"\tTITLE: ", course[1], "\tINSTRUCTOR NAME: ", course[3], " ", course[4], "\tCREDITS: ", course[7], "\tDAYS: ", days, "\tTIME: ", course[8], "-", course[9], "\n") 
+            
     def searchCourseInput(self):
-        print("Enter Search Parameter: ")
+        print("Search Course By Parameter")
+        print("Options:\nCRN\nCOURSE TITLE\nCOURSE DEPARTMENT\nINSTRUCTOR NAME\n")
+        print("Enter Search Query: ")
         x = input()
         cursor.execute("""SELECT * 
         FROM COURSE 
-        WHERE CRN='%s' OR TITLE='%s' OR DEPARTMENT='%s' OR INSTRUCTOR_FIRST='%s' OR INSTRUCTOR_LAST='%s' OR TIME='%s' OR DAYS='%s' OR SEMESTER='%s' OR YEAR='%s' OR CREDITS='%s' """% (x, x, x, x, x, x, x, x, x, x))
+        WHERE CRN='%s' OR TITLE='%s' OR DEPARTMENT='%s' OR INSTRUCTOR_FIRST='%s' OR INSTRUCTOR_LAST='%s' OR CREDITS='%s' """% (x, x, x, x, x, x))
         courseInput_result = cursor.fetchall()
-        for i in courseInput_result:
-             print(i)
+        for course in courseInput_result:
+            if (course[10] == 'YES'):
+                day1 = "M "
+            else:
+                day1 = ""
+            if (course[11] == 'YES'):  
+                day2 = "T "
+            else:
+                day2 = ""
+            if (course[12] == 'YES'):
+                day3 = "W "
+            else:
+                day3 = ""
+            if (course[13] == 'YES'):
+                day4 = "TR "
+            else:
+                day4 = ""
+            if (course[14] == 'YES'):
+                day5 = "F "
+            else:
+                day5 = ""
+            days = day1 + day2 + day3 + day4 + day5
+            print("CRN: ", course[0], "\tDEPARTMENT: ", course[2],"\tTITLE: ", course[1], "\tINSTRUCTOR NAME: ", course[3], " ", course[4], "\tCREDITS: ", course[7], "\tDAYS: ", days, "\tTIME: ", course[8], "-", course[9], "\n")
 
     def printSchedule(self):
         cursor.execute("""SELECT CRN 
@@ -164,15 +282,35 @@ class student(User): #derived class
         WHERE ID = '%s' """% (self.ID))
         crn_result = cursor.fetchall()
 
-        classes = []
         for i in crn_result:
-            cursor.execute("""SELECT TITLE, TIME
+            cursor.execute("""SELECT TITLE, INSTRUCTOR_FIRST, INSTRUCTOR_LAST, STARTTIME, ENDTIME, MON, TUES, WED, THUR, FRI
             FROM COURSE
             WHERE CRN = ? """ ,(i))
             schedule_result = cursor.fetchall()
 
-            classes.append([schedule_result[0][0], schedule_result[0][1]])
-        print(classes)        
+            for course in schedule_result:
+                if (course[5] == 'YES'):
+                    day1 = "M "
+                else:
+                    day1 = ""
+                if (course[6] == 'YES'):  
+                    day2 = "T "
+                else:
+                    day2 = ""
+                if (course[7] == 'YES'):
+                    day3 = "W "
+                else:
+                    day3 = ""
+                if (course[8] == 'YES'):
+                    day4 = "TR "
+                else:
+                    day4 = ""
+                if (course[9] == 'YES'):
+                    day5 = "F "
+                else:
+                    day5 = ""
+                days = day1 + day2 + day3 + day4 + day5
+                print("TITLE: ", course[0], "\tINSTRUCTOR NAME: ", course[1], course[2], "\tDAYS: ", days, "\tTIME: ", course[3], "-", course[4], "\n")
 
 class admin(User): # derived class
     def __init__(self, FirstName, LastName, ID):
@@ -180,31 +318,42 @@ class admin(User): # derived class
 
     def addCourseSystem(self):
         print("CRN: ")
-        q = input()
+        l = input()
         print("Course Title: ")
-        r = input()
+        m = input()
         print("Department: ")
-        s = input()
+        n = input()
         print("Instructor First Name: ")
-        t = input()
+        o = input()
         print("Instructor Last Name: ")
-        u = input()
-        print("Time: ")
-        v = input()
-        print("Days: ")
-        w = input()
+        p = input()
         print("Semester: ")
-        x = input()
+        q = input()
         print("Year: ")
-        y = input()
+        r = input()
         print("Credits: ")
+        s = input()
+        print("Start Time: ")
+        t = input()
+        print("End Time: ")
+        u = input()
+        print("Monday (if scheduled for Monday, enter 'YES'): ")
+        v = input()
+        print("Tuesday (if scheduled for Tuesday, enter 'YES'): ")
+        w = input()
+        print("Wednesday (if scheduled for Wednesday, enter 'YES'): ")
+        x = input()
+        print("Thursday (if scheduled for Thursday, enter 'YES'): ")
+        y = input()
+        print("Friday (if scheduled for Friday, enter 'YES'): ")
         z = input()
-        cursor.execute("""INSERT OR IGNORE INTO COURSE VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""", (r, s, t, u, v, w, x, y, z))
+
+        cursor.execute("""INSERT OR IGNORE INTO COURSE VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""", (l, m, n, o, p, q, r, s, t, u, v, w, x, y, z))
 
         print("\n Course Added To System")
 
     def dropCourseSystem(self):
-        print("CRN: ")
+        print("Enter CRN To Remove: ")
         x = input()
         cursor.execute("DELETE FROM COURSE WHERE CRN=%s" ""% (x))
 
@@ -214,18 +363,63 @@ class admin(User): # derived class
         print("\nCourse List: ")
         cursor.execute("""SELECT * FROM COURSE""")
         course_result = cursor.fetchall()
-        for i in course_result:
-            print(i)
+        for course in course_result:
+            if (course[10] == 'YES'):
+                day1 = "M "
+            else:
+                day1 = ""
+            if (course[11] == 'YES'):  
+                day2 = "T "
+            else:
+                day2 = ""
+            if (course[12] == 'YES'):
+                day3 = "W "
+            else:
+                day3 = ""
+            if (course[13] == 'YES'):
+                day4 = "TR "
+            else:
+                day4 = ""
+            if (course[14] == 'YES'):
+                day5 = "F "
+            else:
+                day5 = ""
+            days = day1 + day2 + day3 + day4 + day5
+            print("CRN: ", course[0], "\tDEPARTMENT: ", course[2],"\tTITLE: ", course[1], "\tINSTRUCTOR NAME: ", course[3], " ", course[4], "\tCREDITS: ", course[7], "\tDAYS: ", days, "\tTIME: ", course[8], "-", course[9], "\n")
 
     def searchCourseInput(self):
-        print("Enter Search Parameter: ")
+        print("Search Course By Parameter")
+        print("Options:\nCRN\nCOURSE TITLE\nCOURSE DEPARTMENT\nINSTRUCTOR NAME\n")
+        print("Enter Search Query: ")
         x = input()
         cursor.execute("""SELECT * 
         FROM COURSE 
-        WHERE CRN='%s' OR TITLE='%s' OR DEPARTMENT='%s' OR INSTRUCTOR_FIRST='%s' OR INSTRUCTOR_LAST='%s' OR TIME='%s' OR DAYS='%s' OR SEMESTER='%s' OR YEAR='%s' OR CREDITS='%s' """% (x, x, x, x, x, x, x, x, x, x))
+        WHERE CRN='%s' OR TITLE='%s' OR DEPARTMENT='%s' OR INSTRUCTOR_FIRST='%s' OR INSTRUCTOR_LAST='%s' OR CREDITS='%s' """% (x, x, x, x, x, x))
         courseInput_result = cursor.fetchall()
-        for i in courseInput_result:
-             print(i)
+        for course in courseInput_result:
+            if (course[10] == 'YES'):
+                day1 = "M "
+            else:
+                day1 = ""
+            if (course[11] == 'YES'):  
+                day2 = "T "
+            else:
+                day2 = ""
+            if (course[12] == 'YES'):
+                day3 = "W "
+            else:
+                day3 = ""
+            if (course[13] == 'YES'):
+                day4 = "TR "
+            else:
+                day4 = ""
+            if (course[14] == 'YES'):
+                day5 = "F "
+            else:
+                day5 = ""
+            days = day1 + day2 + day3 + day4 + day5
+            print("CRN: ", course[0], "\tDEPARTMENT: ", course[2],"\tTITLE: ", course[1], "\tINSTRUCTOR NAME: ", course[3], " ", course[4], "\tCREDITS: ", course[7], "\tDAYS: ", days, "\tTIME: ", course[8], "-", course[9], "\n")
+    
     def addStudent():
         print("ID: ")
         i = input()
@@ -483,11 +677,11 @@ while  inTheWorks == 1:
             i = instructor(firstName,lastName, id) # defines the variable j which shows who the instructor is
             while(y == 1):
                 print("These are the options which you have")
-                print("If you want to print class  press 1")
-                print(" If you want to search all Courses press 2")
-                print("If you want to search courses based on parameters press 3")
-                print("If you want to print schedule press 4")
-                print("If you want to log out press 5")
+                print("1. Print class roster")
+                print("2. Search all courses")
+                print("3. Search by parameter")
+                print("4. Print schedule")
+                print("5. Log out")
                 choice=input()
                 if(choice == "1"):
                     i.printRoster()
@@ -501,9 +695,7 @@ while  inTheWorks == 1:
                     y = None
                     inTheWorks = 0
                 else:
-                    print("That number isn't valid try again")
-
-
+                    print("That number isn't valid try again: ")
         else:
             print("Wrong username/Password try again") # if incorrect password/username is entered
             username, passWord = login() #takes the tuple from the login
@@ -515,13 +707,16 @@ while  inTheWorks == 1:
             s = student(firstName,lastName,id)
             while(y == 1):
                 print("These are the options that you have")
-                print("Add course option press 1")
-                print("Drop course option press 2")
-                print("Search all Courses press 3")
-                print("Search by parameter press 4")
-                print("Print Schedule press 5")
-                print("Log out press 6")
+                print("-------------------------------------")
+                print("1. Add course option")
+                print("2. Drop course option")
+                print("3. Search all Courses")
+                print("4. Search by parameter")
+                print("5. Print Schedule")
+                print("6. Log out")
+                print("Select a number: ")
                 choice = input()
+
                 if(choice == "1"):
                     s.addCourse()
                 elif(choice == "2"):
@@ -530,14 +725,13 @@ while  inTheWorks == 1:
                     s.searchCourse()
                 elif(choice == "4"):
                     s.searchCourseInput()
-                    print("I have been called")
                 elif(choice == "5"):
                     s.printSchedule()
                 elif(choice == "6"):
                     y = 0
                     inTheWorks = None
                 else:
-                    print("That number isn't valid try again")
+                    print("Invalid choice, try again: ")
         else:
             print("Wrong username/Password try again")# if incorrect password/username is entered
             username, passWord = login() #takes the tuple from the login
@@ -549,16 +743,17 @@ while  inTheWorks == 1:
             a = admin(firstName,lastName,id)
             while(y == 1):
                 print("These are the options that you have")
-                print("Add course option press 1")
-                print("Drop course option press 2")
-                print("Search all Courses press 3")
-                print("Search by parameter press 4")
-                print("If you would like to remove a student from a class press 5")
-                print("If you want to add student to a Course press 6")
-                print("List Instructor press 7 ")
-                print("Unlist Instructor press 8")
-                print("Log out press 9")
+                print("1. Add course to the system")
+                print("2. Drop course from the system")
+                print("3. Search all courses")
+                print("4. Search by parameter")
+                print("5. Remove student from a course")
+                print("6. Add student to a course")
+                print("7. Add instructor to course")
+                print("8. Remove instructor from a course")
+                print("9. Log out")
                 choice = input()
+
                 if(choice == "1"):
                     a.addCourseSystem()
                 elif(choice == "2"):
@@ -589,6 +784,5 @@ while  inTheWorks == 1:
     else:
         print("That number is not valid")
             
-
 conn.commit()
 conn.close()
