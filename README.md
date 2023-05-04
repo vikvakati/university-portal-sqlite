@@ -16,5 +16,5 @@ This is a University Course Management System implemented in Python using SQLite
 
 ## Requirements
 - Python 3
-- MySQL
+- SQLite
 
